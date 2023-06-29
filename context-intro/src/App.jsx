@@ -1,20 +1,25 @@
-import ComponentA from './components/ComponentA'
-import ComponentB from './components/ComponentB'
-import './App.css'
+import { useState, useContext } from "react"
+import ComponentA from "./components/ComponentA"
+import ComponentB from "./components/ComponentB"
+import DataContext from "./DataContext"
 
 function App() {
-  return (
-  
-      <div className="app">
-        <div className="header">
-          <h1>Intro to Context</h1>
-        </div>
+  // DATA TO BE PASSED BY PROVIDER
+  const [userInfo, setUserInfo] = useState({
+    name: "Jeremy",
+    favColor: "blue",
+    favFood: "chicken parmesean",
+    favMovie: "Goodfellas",
+  })
 
-        <div className="main">
-          <ComponentA/>
-          <ComponentB/>
-        </div>
- </div>
+  return (
+    <div className="App">
+      <h2>React Context..using useContext</h2>
+      <DataContext.Provider value={{ userInfo, setUserInfo }}>
+        <ComponentA />
+        <ComponentB />
+      </DataContext.Provider>
+    </div>
   )
 }
 
